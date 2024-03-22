@@ -16,16 +16,6 @@ This web application is developed to facilitate students and university staff in
 
 📊 **Statistics:** Generating statistical data about equipment usage and activity in the hall.
 
-## Installation
-
-1. Clone this repository to your local machine.
-2. Install the necessary dependencies using `npm install`.
-3. Start the application with `npm start`.
-
-## Contributions
-
-Any ideas, suggestions for improvements, and development are welcome! Feel free to propose and work on new features.
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
