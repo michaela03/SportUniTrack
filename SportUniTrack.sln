@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportUniTrack", "SportUniTrack.csproj", "{AA6ED47E-4EC7-4C2C-B8C3-2AB99299D138}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA6ED47E-4EC7-4C2C-B8C3-2AB99299D138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA6ED47E-4EC7-4C2C-B8C3-2AB99299D138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA6ED47E-4EC7-4C2C-B8C3-2AB99299D138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA6ED47E-4EC7-4C2C-B8C3-2AB99299D138}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E6EE72B3-32B7-4D57-B167-F67471D86C56}
+	EndGlobalSection
+EndGlobal
