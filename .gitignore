@@ -1,0 +1,30 @@
+# Build и временни файлове
+bin/
+obj/
+
+# Настройки за проекта
+*.suo
+*.user
+*.vscode/
+*.sln.docstates
+
+# SDK билд файлове
+*.sw*
+
+# ASP.NET и Entity Framework Core файлове
+*.ide
+*.sdf
+*.sqlite
+
+# Настройки за Rider
+.idea/
+
+# Настройки за Visual Studio Code
+.vscode/
+
+# Общи файлове за Mac
+.DS_Store
+
+# Общи файлове за Unity
+Library/
+Temp/
