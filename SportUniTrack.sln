@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportUniTrack", "SportUniTrack.csproj", "{A77FCD0A-4F00-4107-8AF7-04BA63F397ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportUniTrack", "SportUniTrack.csproj", "{B91D0154-EE9D-4210-9754-953EF72E13BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A77FCD0A-4F00-4107-8AF7-04BA63F397ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A77FCD0A-4F00-4107-8AF7-04BA63F397ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A77FCD0A-4F00-4107-8AF7-04BA63F397ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A77FCD0A-4F00-4107-8AF7-04BA63F397ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B91D0154-EE9D-4210-9754-953EF72E13BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B91D0154-EE9D-4210-9754-953EF72E13BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B91D0154-EE9D-4210-9754-953EF72E13BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B91D0154-EE9D-4210-9754-953EF72E13BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E000538D-13AB-4108-A14F-159993DEC272}
+		SolutionGuid = {0DBF94E7-B1E9-4196-B30C-68B72D313521}
 	EndGlobalSection
 EndGlobal

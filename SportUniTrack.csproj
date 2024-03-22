@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-SportUniTrack-93e519c1-d57c-4b73-8caf-6903fde23728</UserSecretsId>
+    <UserSecretsId>aspnet-SportUniTrack-d969e179-ea7b-488a-8f1e-27a07ea4e009</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

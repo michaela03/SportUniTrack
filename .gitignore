@@ -1,30 +1,56 @@
 # Build и временни файлове
 bin/
 obj/
-
-# Настройки за проекта
-*.suo
-*.user
-*.vscode/
-*.sln.docstates
-
-# SDK билд файлове
-*.sw*
-
-# ASP.NET и Entity Framework Core файлове
-*.ide
-*.sdf
+*.dll
+*.pdb
+*.exe
+*.msi
+*.zip
 *.sqlite
 
-# Настройки за Rider
-.idea/
+# Настройки на Visual Studio
+.vs/
+*.vscode/
+*.suo
+*.user
+*.sln.docstates
 
-# Настройки за Visual Studio Code
+# Отделни настройки
+*.bak
+*.log
+*.cache
+
+# Пакети и зависимости
+/packages/
+*.npm-debug.log
+node_modules/
+*.lock
+
+# Изключете файловете със секретни данни (например appsettings.json с чувствителна информация)
+appsettings.json
+appsettings.Development.json
+
+# Изключете базата данни (ако използвате локална база данни)
+*.mdf
+*.ldf
+
+# Visual Studio Code specific
 .vscode/
 
-# Общи файлове за Mac
+# Rider specific
+.idea/
+*.sln.iml
+
+# Mac OS specific
 .DS_Store
 
-# Общи файлове за Unity
-Library/
-Temp/
+# Тествайки
+testresults/
+
+# Не използвайте файловете на миграции, ако използвате Code-First подход за Entity Framework Core
+*DbContextModelSnapshot.cs
+*DbContextModel.cs
+
+# Не използвайте файловете на миграции, ако използвате Code-First подход за Entity Framework Core
+*DbContextModelSnapshot.cs
+*DbContextModel.cs
