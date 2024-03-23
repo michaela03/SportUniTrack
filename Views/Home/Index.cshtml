@@ -1,8 +1,63 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Университетска спортна зала</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <style>
+        /* Стилове за карусела */
+        .owl-carousel .item img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Стилове за информацията за спортната зала */
+        .sport-hall-info {
+            margin-top: 50px;
+        }
+
+        .sport-hall-info p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Карусел със снимки -->
+    <div class="owl-carousel owl-theme">
+        <div class="item"><img src="img" alt="Снимка 1"></div>
+        <div class="item"><img src="image2.jpg" alt="Снимка 2"></div>
+        <div class="item"><img src="image3.jpg" alt="Снимка 3"></div>
+    </div>
+
+    <!-- Информация за спортната зала -->
+    <div class="sport-hall-info">
+        <h2>Изградена е спортно-тренировъчна зала</h2>
+        <p>Спортната зала е с външни габарити с максимална ширина 59.80 м и максимална дължина от 59.60 м. Осигурен е безпрепятствен достъп на хора с увреждания с помощта на рампи директно от външния терен – около цялата сграда е създадена една платформа без оформени стълби пред самите входове. Паркингите за ежедневно използване са ситуирани северно от залата – 147 паркоместа за леки коли, от които 16 паркоместа за паркиране на автомобили на хора с увреждания, и три паркоместа за автобуси.</p>
+    </div>
+
+    <!-- Скриптове за карусела -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                items: 1
+            });
+        });
+    </script>
+</body>
+
+</html>
