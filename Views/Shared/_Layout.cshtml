@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SportUniTrack</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Спортна зала ПУ</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,11 +20,29 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Правила за ползване</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ApplicationUsers" asp-action="Index">Потребители</a>
+                        </li>
+}
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Equipments">Наличности</a>
+                        </li>
+}
+                        @if (User.Identity.IsAuthenticated)
+{
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Borrowings">Наеми</a>
+                        </li>
+}
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -37,9 +55,24 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <!-- Футър с контактна информация -->
+    <footer class="bg-light py-3">
         <div class="container">
-            &copy; 2024 - SportUniTrack - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Контакти</h4>
+                    <ul>
+                        <li>Адрес: Северен, бул. „България“ 236А, 4027 Пловдив</li>
+                        <li>Телефон: 0882 345 678</li>
+                        <li>Имейл: info@sportzala.com</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>Работно време</h4>
+                    <p>Понеделник - Петък: 08:00 - 20:00 ч.</p>
+                    <p>Събота - Неделя: 09:00 - 18:00 ч.</p>
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
