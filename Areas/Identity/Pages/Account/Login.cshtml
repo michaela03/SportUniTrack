@@ -1,0 +1,42 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Вход";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <form id="account" method="post">
+                    <h2 class="text-center mb-4">Вход във Вашия профил</h2>
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    <div class="form-group">
+                        <label for="email">Имейл</label>
+                        <input asp-for="Input.Email" id="email" class="form-control" autocomplete="username" placeholder="Въведете вашия имейл" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Парола</label>
+                        <input asp-for="Input.Password" id="password" class="form-control" autocomplete="current-password" placeholder="Въведете вашата парола" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" asp-for="Input.RememberMe" id="rememberMe" />
+                        <label class="form-check-label" for="rememberMe">Запомни ме</label>
+                    </div>
+                    <button id="login-submit" type="submit" class="btn btn-primary w-100">Вход</button>
+                    <div class="text-center mt-3">
+                        <a id="forgot-password" asp-page="./ForgotPassword">Забравена парола?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

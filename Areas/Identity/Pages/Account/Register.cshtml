@@ -1,0 +1,34 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label">Имейл</label>
+                <input asp-for="Input.Email" id="email" class="form-control" autocomplete="username" placeholder="name@example.com" />
+                <span class="text-danger" asp-validation-for="Input.Email"></span>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Парола</label>
+                <input asp-for="Input.Password" id="password" class="form-control" autocomplete="new-password" placeholder="Парола" />
+                <span class="text-danger" asp-validation-for="Input.Password"></span>
+            </div>
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Потвърдете паролата</label>
+                <input asp-for="Input.ConfirmPassword" id="confirmPassword" class="form-control" autocomplete="new-password" placeholder="Потвърдете паролата" />
+                <span class="text-danger" asp-validation-for="Input.ConfirmPassword"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="btn btn-primary w-100">Регистрирай се</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

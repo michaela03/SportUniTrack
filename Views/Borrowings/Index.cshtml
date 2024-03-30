@@ -1,0 +1,54 @@
+﻿@model IEnumerable<SportUniTrack.Models.Borrowing>
+
+@{
+    ViewData["Title"] = "Наемания";
+}
+
+<h1>Наемания на спортна екипировка от склада</h1>
+
+<p>
+    <a asp-action="Create">Добави наем на спортна екипировка</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Потребител
+            </th>
+            <th>
+                Екипировка
+            </th>
+            <th>
+                Наемане на
+            </th>
+            <th>
+                Връщане на
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="@((item.ReturnedAt == null) ? "table-danger" : "")">
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EquipmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BorrowedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReturnedAt)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Редактирай</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Детайли</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

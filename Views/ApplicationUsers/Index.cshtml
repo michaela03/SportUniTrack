@@ -1,0 +1,67 @@
+﻿@model IEnumerable<SportUniTrack.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Потребители на Спортна зала ПУ</h1>
+
+<p>
+    <a asp-action="Create">Създай нов</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Име
+            </th>
+            <th>
+                Фамилия
+            </th>
+            <th>
+                Вид потребител
+            </th>
+            <th>
+                Факултетен номер
+            </th>
+            <th>
+                Специалност
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr style="@(string.IsNullOrEmpty(item.FacultyNumber) ? "background-color: lightgreen;" : "")">
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @if (string.IsNullOrEmpty(item.FacultyNumber))
+                    {
+                        <span style="color:green;">Няма</span>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.FacultyNumber)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Speciality)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Редактирай</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Детайли</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
