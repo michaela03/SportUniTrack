@@ -15,5 +15,6 @@ namespace SportUniTrack.Data
         public DbSet<SportUniTrack.Models.Equipment> Equipment { get; set; } = default!;
         public DbSet<SportUniTrack.Models.Borrowing> Borrowing { get; set; } = default!;
         public IEnumerable Equipments { get; internal set; }
+        public DbSet<SportUniTrack.Models.Sport> Sport { get; set; } = default!;
     }
 }

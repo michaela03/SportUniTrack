@@ -1,54 +1,93 @@
 ﻿@model IEnumerable<SportUniTrack.Models.Borrowing>
 
 @{
-    ViewData["Title"] = "Наемания";
+    ViewData["Title"] = "Наемания на спортна екипировка от склада";
 }
 
-<h1>Наемания на спортна екипировка от склада</h1>
+<div class="container">
+    <h1 class="text-center mt-5 mb-4">Наемания на спортна екипировка</h1>
 
-<p>
-    <a asp-action="Create">Добави наем на спортна екипировка</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Потребител
-            </th>
-            <th>
-                Екипировка
-            </th>
-            <th>
-                Наемане на
-            </th>
-            <th>
-                Връщане на
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr class="@((item.ReturnedAt == null) ? "table-danger" : "")">
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EquipmentId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BorrowedAt)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReturnedAt)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Редактирай</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Детайли</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <div class="row mb-3">
+        <div class="col text-center">
+            <!-- Добавен клас text-center -->
+            <a class="btn btn-primary" asp-action="Create">Добави наем на спортна екипировка</a>
+        </div>
+    </div>
+
+    <form asp-action="SearchByBorrowedDate" method="get">
+        <div class="form-group">
+            <label for="startDate">Начална дата:</label>
+            <input type="date" class="form-control" id="startDate" name="startDate">
+        </div>
+        <div class="form-group">
+            <label for="endDate">Крайна дата:</label>
+            <input type="date" class="form-control" id="endDate" name="endDate">
+        </div>
+        <button type="submit" class="btn btn-primary">Търсене</button>
+    </form>
+
+
+    <!-- Таблица за невърнати екипировки -->
+    <h2 class="mt-5">Невърнати екипировки</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Потребител</th>
+                    <th>Екипировка</th>
+                    <th>Наемане на</th>
+                    <th>Връщане на</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Where(x => x.ReturnedAt == null))
+                {
+                    <tr class="table-danger">
+                        <td>@Html.DisplayFor(modelItem => item.UserId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EquipmentId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.BorrowedAt)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ReturnedAt)</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Редактирай</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Детайли</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Таблица за върнати екипировки -->
+    <h2 class="mt-5">Върнати екипировки</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Потребител</th>
+                    <th>Екипировка</th>
+                    <th>Наемане на</th>
+                    <th>Връщане на</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Where(x => x.ReturnedAt != null))
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.UserId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EquipmentId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.BorrowedAt)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ReturnedAt)</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Редактирай</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Детайли</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

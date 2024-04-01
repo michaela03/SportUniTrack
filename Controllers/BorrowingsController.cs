@@ -22,24 +22,40 @@ namespace SportUniTrack.Controllers
         }
 
         // GET: Borrowings
-       public async Task<IActionResult> SearchUsers()
+
+
+        public async Task<IActionResult> SearchByBorrowedDate(DateTime? startDate, DateTime? endDate)
         {
-            if (ModelState.IsValid)
+            if (!startDate.HasValue && !endDate.HasValue)
             {
-                var users = from u in _context.ApplicationUser
-                            select u;
-                if (!String.IsNullOrEmpty("FirstName"))
-                {
-                    users = users.Where(s => s.FirstName.Contains("FirstName"));
-                }
-                if (!String.IsNullOrEmpty("LastName"))
-                {
-                    users = users.Where(s => s.LastName.Contains("LastName"));  
-                }
+                return RedirectToAction(nameof(Index));
             }
-            return View(await _context.ApplicationUser.ToListAsync());
- 
+
+            var borrowings = _context.Borrowing.AsQueryable();
+
+            if (startDate.HasValue)
+            {
+                borrowings = borrowings.Where(b => b.BorrowedAt >= startDate.Value.Date);
+            }
+
+            if (endDate.HasValue)
+            {
+                borrowings = borrowings.Where(b => b.BorrowedAt <= endDate.Value.Date);
+            }
+
+            return View(await borrowings.ToListAsync());
         }
+
+
+        public async Task<IActionResult> UserBorrowings(string userId)
+        {
+            var borrowings = await _context.Borrowing
+                .Where(b => b.UserId == userId)
+                .ToListAsync();
+
+            return View(borrowings);
+        }
+
 
         // GET: Borrowings
         public async Task<IActionResult> Index()
