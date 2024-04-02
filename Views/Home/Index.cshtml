@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -89,6 +92,11 @@
         </p>
     </div>
 
+    <!-- Google Calendar -->
+    <div class="container mt-5">
+        <h2>Календар на спортните събития</h2>
+        <iframe src="https://calendar.google.com/calendar/embed?src=AIzaSyCcAclOdocXhaqwRJ5hpLqvUqO9Tw-0fC4" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    </div>
 
 <!-- Bootstrap и jQuery скриптове -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
