@@ -23,30 +23,6 @@ namespace SportUniTrack.Controllers
 
         // GET: Borrowings
 
-
-        public async Task<IActionResult> SearchByBorrowedDate(DateTime? startDate, DateTime? endDate)
-        {
-            if (!startDate.HasValue && !endDate.HasValue)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-
-            var borrowings = _context.Borrowing.AsQueryable();
-
-            if (startDate.HasValue)
-            {
-                borrowings = borrowings.Where(b => b.BorrowedAt >= startDate.Value.Date);
-            }
-
-            if (endDate.HasValue)
-            {
-                borrowings = borrowings.Where(b => b.BorrowedAt <= endDate.Value.Date);
-            }
-
-            return View(await borrowings.ToListAsync());
-        }
-
-
         public async Task<IActionResult> UserBorrowings(string userId)
         {
             var borrowings = await _context.Borrowing
@@ -58,9 +34,23 @@ namespace SportUniTrack.Controllers
 
 
         // GET: Borrowings
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(DateTime? BorrowedDate)
         {
-            return View(await _context.Borrowing.ToListAsync());
+            // Задаване на стойността на ViewData за полето за търсене
+            ViewData["Getborrowdata"] = BorrowedDate;
+
+            // Заявка за извличане на всички наемания
+            var borrowingsQuery = from x in _context.Borrowing select x;
+
+            // Ако е подадена дата, филтрираме наеманията по тази дата
+            if (BorrowedDate.HasValue)
+            {
+                // Филтрирайте заявката, за да покажете само наеманията за подадената дата
+                borrowingsQuery = borrowingsQuery.Where(x => x.BorrowedAt.Date == BorrowedDate.Value.Date);
+            }
+
+            // Извличане на резултата от заявката и връщане на изгледа
+            return View(await borrowingsQuery.AsNoTracking().ToListAsync());
         }
 
         // GET: Borrowings/Details/5
