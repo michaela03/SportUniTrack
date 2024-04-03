@@ -11,7 +11,6 @@ using SportUniTrack.Models;
 
 namespace SportUniTrack.Controllers
 {
-    //[Authorize(Policy = "RequireAdminRole")]
     public class BorrowingsController : Controller
     {
         private readonly ApplicationDbContext _context;

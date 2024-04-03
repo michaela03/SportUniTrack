@@ -18,7 +18,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
@@ -27,26 +27,27 @@
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="ApplicationUsers" asp-action="Index">Потребители</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownStudents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Студенти
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownStudents">
+                                    <li><a class="dropdown-item" href="@Url.Action("Index", "Equipments")">Наличности</a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("Index", "Sports")">Видове спорт</a></li>
+                                </ul>
                             </li>
                         }
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Equipments" asp-action="Index">Наличности</a>
-                            </li>
-                        }
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Borrowings" asp-action="Index">Наеми</a>
-                            </li>
-                        }
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Sports" asp-action="Index">Видове спорт</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTeachers" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Преподаватели
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownTeachers">
+                                    <li><a class="dropdown-item" href="@Url.Action("Index", "ApplicationUsers")">Потребители</a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("Index", "Borrowings")">Наеми</a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("Index", "Equipments")">Наличности</a></li>
+                                </ul>
                             </li>
                         }
                     </ul>

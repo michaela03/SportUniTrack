@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using SportUniTrack.Data;
+using SportUniTrack.Models;
 
 namespace SportUniTrack.Areas.Identity.Pages.Account.Manage
 {
@@ -16,13 +19,16 @@ namespace SportUniTrack.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly ApplicationDbContext _context;
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
 
         /// <summary>
@@ -59,6 +65,23 @@ namespace SportUniTrack.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
         }
+
+        //public IList<Equipment> BorrowedEquipment { get; set; }
+        //public async Task<IActionResult> OnGetAsync()
+        //{
+        //    var user = await _userManager.GetUserAsync(User);
+        //    if (user == null)
+        //    {
+        //        return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+        //    }
+
+        //    BorrowedEquipment = await _context.Borrowing
+        //        .Where(b => b.UserId == user.Id && b.ReturnedAt == null) // Само наетата, които не са върнати
+        //        .Select(b => b.BorrowedAt)
+        //        .ToListAsync();
+
+        //    return Page();
+        //}
 
         private async Task LoadAsync(IdentityUser user)
         {

@@ -6,73 +6,73 @@
 
 <div class="container">
     <h1 class="mt-5">Потребители на Спортна зала ПУ</h1>
+    <form method="get" asp-action="Index" class="mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Въведете име на потребител..." value="@ViewData["UserSearch"]" name="searchString" style="width:400px" />
+            <button type="submit" class="btn btn-primary">Търсене</button>
+            <a asp-action="Index" class="btn btn-secondary">Покажи всички потребители</a>
+        </div>
+    </form>
 
     <div class="row mt-4">
         <div class="col">
-            <h2>Преподаватели</h2>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Име</th>
-                        <th>Фамилия</th>
-                        <th>Вид потребител</th>
-                        <th>Факултетен номер</th>
-                        <th>Специалност</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Where(u => string.IsNullOrEmpty(u.FacultyNumber)))
-                    {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
-                            <td>@Html.DisplayFor(modelItem => item.LastName)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Role)</td>
-                            <td>
-                                <span style="color: green;">Няма</span>
-                            </td>
-                            <td>@Html.DisplayFor(modelItem => item.Speciality)</td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id">Редактирай</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id">Детайли</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="text-primary">Преподаватели</h2>
+                <a href="@Url.Action("Create")" class="btn btn-primary">Добави нов</a>
+            </div>
+            <div class="accordion" id="teachersAccordion">
+                @foreach (var item in Model.Where(u => string.IsNullOrEmpty(u.FacultyNumber)).OrderBy(u => u.FirstName))
+                {
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="teacherHeading_@item.Id">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#teacherCollapse_@item.Id" aria-expanded="true" aria-controls="teacherCollapse_@item.Id">
+                                <span>@item.FirstName @item.LastName</span>
+                                <span class="badge bg-secondary">@item.Speciality</span>
+                            </button>
+                        </h2>
+                        <div id="teacherCollapse_@item.Id" class="accordion-collapse collapse" aria-labelledby="teacherHeading_@item.Id" data-bs-parent="#teachersAccordion">
+                            <div class="accordion-body">
+                                <p>Вид потребител: @item.Role</p>
+                                <p><span class="text-success">Факултетен номер:</span> Няма</p>
+                                <div class="d-flex justify-content-end">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning me-2">Редактирай</a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info me-2">Детайли</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
         <div class="col">
-            <h2>Студенти</h2>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Име</th>
-                        <th>Фамилия</th>
-                        <th>Вид потребител</th>
-                        <th>Факултетен номер</th>
-                        <th>Специалност</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Where(u => !string.IsNullOrEmpty(u.FacultyNumber)))
-                    {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
-                            <td>@Html.DisplayFor(modelItem => item.LastName)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Role)</td>
-                            <td>@Html.DisplayFor(modelItem => item.FacultyNumber)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Speciality)</td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id">Редактирай</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id">Детайли</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="text-primary">Студенти</h2>
+            </div>
+            <div class="accordion" id="studentsAccordion">
+                @foreach (var item in Model.Where(u => !string.IsNullOrEmpty(u.FacultyNumber)).OrderBy(u => u.FirstName))
+                {
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="studentHeading_@item.Id">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#studentCollapse_@item.Id" aria-expanded="true" aria-controls="studentCollapse_@item.Id">
+                                <span>@item.FirstName @item.LastName</span>
+                                <span class="badge bg-secondary">@item.Speciality</span>
+                            </button>
+                        </h2>
+                        <div id="studentCollapse_@item.Id" class="accordion-collapse collapse" aria-labelledby="studentHeading_@item.Id" data-bs-parent="#studentsAccordion">
+                            <div class="accordion-body">
+                                <p>Вид потребител: @item.Role</p>
+                                <p><span class="text-success">Факултетен номер:</span> @item.FacultyNumber</p>
+                                <div class="d-flex justify-content-end">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning me-2">Редактирай</a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info me-2">Детайли</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
     </div>
 </div>

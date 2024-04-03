@@ -4,61 +4,70 @@ using SportUniTrack.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// ???????? ?? ?????? ??? ??????????.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
+
 builder.Services.AddScoped<SignInManager<IdentityUser>>();
+
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddRazorPages();
-builder.Services.AddAuthorization(options =>
+
+builder.Services.AddAuthentication(options =>
 {
-    options.AddPolicy("RequireAdminRole",
-         policy => policy.RequireRole("adminRoleId"));
-});
+    options.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme;
+    options.DefaultSignInScheme = IdentityConstants.ApplicationScheme;
+    options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
+}).AddCookie();
+
+//builder.Services.AddAuthorization(options =>
+//{
+//    options.AddPolicy("RequireAdminRole",
+//         policy => policy.RequireRole("adminRoleName"));
+//});
 
 var app = builder.Build();
 
-//add admin role
+//// ???????? ???? "teacherRoleId"
 //using (var scope = app.Services.CreateScope())
 //{
 //    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 //    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 //    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-//    // Apply migrations
+//    // ????????? ????????
 //    dbContext.Database.Migrate();
 
-//    //// Seed roles
-//    if (!await roleManager.RoleExistsAsync("adminRoleId"))
+//    // ????????? ? ???????? ?????? "teacherRoleId"
+//    if (!await roleManager.RoleExistsAsync("teacherRoleId"))
 //    {
-//        await roleManager.CreateAsync(new IdentityRole("adminRoleId"));
+//        await roleManager.CreateAsync(new IdentityRole("teacherRoleId"));
 //    }
 
-//    // Seed admin user
-//    var adminEmail = "admin@gmail.com";
-//    var adminExists = await userManager.FindByEmailAsync(adminEmail);
-//    if (adminExists == null)
+//    // ????????? ???? ???????????? ?? ??????? ? ?????? "teacherRoleId" ? ?? ????????, ??? ??
+//    var teacherEmail = "teacher@fmi.pu";
+//    var teacherExists = await userManager.FindByEmailAsync(teacherEmail);
+//    if (teacherExists == null)
 //    {
-//        var adminUser = new IdentityUser { UserName = adminEmail, Email = adminEmail };
-//        var result = await userManager.CreateAsync(adminUser, "%0y@K[1I%59X\r\n"); // Set the password for the admin user
+//        var teacherUser = new IdentityUser { UserName = teacherEmail, Email = teacherEmail };
+//        var result = await userManager.CreateAsync(teacherUser, "I,~KYP3@o(87");
 //        if (result.Succeeded)
 //        {
-//            await userManager.AddToRoleAsync(adminUser, "adminRoleId");
+//            await userManager.AddToRoleAsync(teacherUser, "teacherRoleId");
 //        }
 //    }
 //}
 
 
-
-// Configure the HTTP request pipeline.
+// ????????????? ?? ????????? ?? HTTP ??????.
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
@@ -66,7 +75,6 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -75,6 +83,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

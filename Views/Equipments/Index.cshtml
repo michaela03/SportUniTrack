@@ -11,31 +11,35 @@
         <div class="col">
             <a class="btn btn-primary mb-3" asp-action="Create">Добави нова</a>
 
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Име</th>
-                        <th>Описание</th>
-                        <th>Количество</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
                         <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Description)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
-                            <td>
-                                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.Id">Редактиране</a>
-                                <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.Id">Детайли</a>
-                                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">Изтриване</a>
-                            </td>
+                            <th>Име</th>
+                            <th>Описание</th>
+                            <th>Количество</th>
+                            <th>Действия</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Действия">
+                                        <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.Id">Редактиране</a>
+                                        <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.Id">Детайли</a>
+                                        <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">Изтриване</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

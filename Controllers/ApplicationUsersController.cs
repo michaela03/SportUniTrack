@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,16 +14,31 @@ namespace SportUniTrack.Controllers
     public class ApplicationUsersController : Controller
     {
         private readonly ApplicationDbContext _context;
-
+      
         public ApplicationUsersController(ApplicationDbContext context)
         {
             _context = context;
+            
         }
 
         // GET: ApplicationUsers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.ApplicationUser.ToListAsync());
+            // Задаване на стойността на ViewData за полето за търсене
+            ViewData["Index"] = searchString;
+
+            // Заявка за извличане на всички потребители
+            var usersQuery = from u in _context.ApplicationUser select u;
+
+            // Филтриране на заявката, ако има подаден низ за търсене
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                // Филтрирайте заявката, за да покажете само потребителите, чиито имена съдържат подадения низ
+                usersQuery = usersQuery.Where(u => u.FirstName.Contains(searchString) || u.LastName.Contains(searchString));
+            }
+
+            // Извличане на резултата от заявката и връщане на изгледа
+            return View(await usersQuery.AsNoTracking().ToListAsync());
         }
 
         // GET: ApplicationUsers/Details/5
@@ -64,6 +80,8 @@ namespace SportUniTrack.Controllers
             }
             return View(applicationUser);
         }
+
+
 
         // GET: ApplicationUsers/Edit/5
         public async Task<IActionResult> Edit(string id)

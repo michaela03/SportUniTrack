@@ -1,0 +1,30 @@
+﻿@model IEnumerable<SportUniTrack.Models.Sport>
+
+@{
+    ViewData["Title"] = "Списък със спортове";
+}
+
+<div class="container">
+    <h1 class="text-center mt-5 mb-4">Списък със спортове</h1>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var sport in Model)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <img src="~/img/@sport.ImageUrl" class="card-img-top" alt="..." style="object-fit: cover; height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title">@sport.Name</h5>
+                        <p class="card-text">@sport.Description</p>
+                        <p class="card-text"><small class="text-muted">@sport.Rules</small></p>
+                    </div>
+                    <div class="card-footer d-grid gap-2">
+                        <a class="btn btn-primary" href="@Url.Action("Details", new { id = sport.Id })">Детайли</a>
+                        <a class="btn btn-info" href="@Url.Action("Edit", new { id = sport.Id })">Редактиране</a>
+                        <a class="btn btn-danger" href="@Url.Action("Delete", new { id = sport.Id })">Изтриване</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

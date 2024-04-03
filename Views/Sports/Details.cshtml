@@ -1,0 +1,42 @@
+﻿@model SportUniTrack.Models.Sport
+
+@{
+    ViewData["Title"] = "Детайли";
+}
+
+<h1>Детайли</h1>
+
+<div>
+    <h4>Спорт</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Име
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Описание
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            Правила
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Rules)
+        </dd>
+        <dt class="col-sm-2">
+            URL на снимка
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Model.ImageUrl" class="img-fluid" alt="Снимка на спорт" />
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Редактиране</a> |
+    <a asp-action="Index" class="btn btn-secondary">Обратно към списъка</a>
+</div>

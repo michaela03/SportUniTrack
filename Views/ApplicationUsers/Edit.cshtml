@@ -9,37 +9,43 @@
 <h4>Потребител</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+    <div class="col-md-6">
+        <form asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
+
+            <div class="mb-3">
+                <label for="firstName" class="form-label">Име</label>
+                <input type="text" id="firstName" name="FirstName" class="form-control" asp-for="FirstName" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
+
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Фамилия</label>
+                <input type="text" id="lastName" name="LastName" class="form-control" asp-for="LastName" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Role" class="control-label"></label>
-                <input asp-for="Role" class="form-control" />
+
+            <div class="mb-3">
+                <label for="role" class="form-label">Роля</label>
+                <input type="text" id="role" name="Role" class="form-control" asp-for="Role" />
                 <span asp-validation-for="Role" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="FacultyNumber" class="control-label"></label>
-                <input asp-for="FacultyNumber" class="form-control" />
+
+            <div class="mb-3">
+                <label for="facultyNumber" class="form-label">Факултетен номер</label>
+                <input type="text" id="facultyNumber" name="FacultyNumber" class="form-control" asp-for="FacultyNumber" />
                 <span asp-validation-for="FacultyNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Speciality" class="control-label"></label>
-                <input asp-for="Speciality" class="form-control" />
+
+            <div class="mb-3">
+                <label for="speciality" class="form-label">Специалност</label>
+                <input type="text" id="speciality" name="Speciality" class="form-control" asp-for="Speciality" />
                 <span asp-validation-for="Speciality" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Запази" class="btn btn-primary" />
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Запази</button>
             </div>
         </form>
     </div>

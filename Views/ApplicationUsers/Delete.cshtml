@@ -1,51 +1,38 @@
 ﻿@model SportUniTrack.Models.ApplicationUser
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Изтриване";
 }
 
 <h1>Изтриване</h1>
 
-<h3>Сигурни ли сте, че искате да изтриете това потребителско име?</h3>
-<div>
-    <h4>Потребител</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Role)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Role)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FacultyNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FacultyNumber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Speciality)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Speciality)
-        </dd>
-    </dl>
+<div class="container">
+    <h3 class="mt-4">Сигурни ли сте, че искате да изтриете този потребител?</h3>
 
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Изтрий" class="btn btn-danger" /> |
-        <a asp-action="Index">Назад към списъка</a>
-    </form>
+    <div class="mt-4">
+        <h4>Потребител</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-4">Име:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.FirstName)</dd>
+
+            <dt class="col-sm-4">Фамилия:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.LastName)</dd>
+
+            <dt class="col-sm-4">Роля:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Role)</dd>
+
+            <dt class="col-sm-4">Факултетен номер:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.FacultyNumber)</dd>
+
+            <dt class="col-sm-4">Специалност:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Speciality)</dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Изтрий</button> |
+            <a asp-action="Index" class="btn btn-secondary">Назад към списъка</a>
+        </form>
+    </div>
 </div>
