@@ -28,46 +28,7 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
 }).AddCookie();
 
-//builder.Services.AddAuthorization(options =>
-//{
-//    options.AddPolicy("RequireAdminRole",
-//         policy => policy.RequireRole("adminRoleName"));
-//});
-
 var app = builder.Build();
-
-//// ???????? ???? "teacherRoleId"
-//using (var scope = app.Services.CreateScope())
-//{
-//    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
-//    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-//    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-
-//    // ????????? ????????
-//    dbContext.Database.Migrate();
-
-//    // ????????? ? ???????? ?????? "teacherRoleId"
-//    if (!await roleManager.RoleExistsAsync("teacherRoleId"))
-//    {
-//        await roleManager.CreateAsync(new IdentityRole("teacherRoleId"));
-//    }
-
-//    // ????????? ???? ???????????? ?? ??????? ? ?????? "teacherRoleId" ? ?? ????????, ??? ??
-//    var teacherEmail = "teacher@fmi.pu";
-//    var teacherExists = await userManager.FindByEmailAsync(teacherEmail);
-//    if (teacherExists == null)
-//    {
-//        var teacherUser = new IdentityUser { UserName = teacherEmail, Email = teacherEmail };
-//        var result = await userManager.CreateAsync(teacherUser, "I,~KYP3@o(87");
-//        if (result.Succeeded)
-//        {
-//            await userManager.AddToRoleAsync(teacherUser, "teacherRoleId");
-//        }
-//    }
-//}
-
-
-// ????????????? ?? ????????? ?? HTTP ??????.
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();

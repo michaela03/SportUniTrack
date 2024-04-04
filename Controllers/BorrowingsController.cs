@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using SportUniTrack.Models;
 
 namespace SportUniTrack.Controllers
 {
+    [Authorize(Roles = "Admin,User")]
     public class BorrowingsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -23,7 +25,7 @@ namespace SportUniTrack.Controllers
         // GET: Borrowings
 
         public async Task<IActionResult> UserBorrowings(string userId)
-        {
+        {            
             var borrowings = await _context.Borrowing
                 .Where(b => b.UserId == userId)
                 .ToListAsync();
@@ -35,6 +37,11 @@ namespace SportUniTrack.Controllers
         // GET: Borrowings
         public async Task<IActionResult> Index(DateTime? BorrowedDate)
         {
+            if (User.IsInRole("Teacher"))
+            {
+
+            }
+
             // Задаване на стойността на ViewData за полето за търсене
             ViewData["Getborrowdata"] = BorrowedDate;
 
