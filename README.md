@@ -2,7 +2,7 @@
 
 Welcome to the repository of our web application for managing the university sports hall!
 
-[![Video Demo](http://img.youtube.com/vi/aNAVo1Ajw0Y/0.jpg)](https://www.youtube.com/watch?v=aNAVo1Ajw0Y)
+[![Video Demo](http://img.youtube.com/vi/aNAVo1Ajw0Y/0.jpg)](https://www.youtube.com/watch?v=H9-GUXW_snQ)
 
 ## Description
 
