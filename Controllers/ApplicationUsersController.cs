@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -24,20 +25,13 @@ namespace SportUniTrack.Controllers
         // GET: ApplicationUsers
         public async Task<IActionResult> Index(string searchString)
         {
-            // Задаване на стойността на ViewData за полето за търсене
+            
             ViewData["Index"] = searchString;
-
-            // Заявка за извличане на всички потребители
             var usersQuery = from u in _context.ApplicationUser select u;
-
-            // Филтриране на заявката, ако има подаден низ за търсене
             if (!string.IsNullOrEmpty(searchString))
-            {
-                // Филтрирайте заявката, за да покажете само потребителите, чиито имена съдържат подадения низ
+            { 
                 usersQuery = usersQuery.Where(u => u.FirstName.Contains(searchString) || u.LastName.Contains(searchString));
             }
-
-            // Извличане на резултата от заявката и връщане на изгледа
             return View(await usersQuery.AsNoTracking().ToListAsync());
         }
 
@@ -60,6 +54,7 @@ namespace SportUniTrack.Controllers
         }
 
         // GET: ApplicationUsers/Create
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Create()
         {
             return View();
@@ -70,6 +65,7 @@ namespace SportUniTrack.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Role,FacultyNumber,Speciality")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
@@ -84,6 +80,7 @@ namespace SportUniTrack.Controllers
 
 
         // GET: ApplicationUsers/Edit/5
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -104,6 +101,7 @@ namespace SportUniTrack.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Edit(string id, [Bind("Id,FirstName,LastName,Role,FacultyNumber,Speciality")] ApplicationUser applicationUser)
         {
             if (id != applicationUser.Id)
@@ -135,6 +133,7 @@ namespace SportUniTrack.Controllers
         }
 
         // GET: ApplicationUsers/Delete/5
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)

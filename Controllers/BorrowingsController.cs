@@ -12,7 +12,7 @@ using SportUniTrack.Models;
 
 namespace SportUniTrack.Controllers
 {
-    [Authorize(Roles = "Admin,User")]
+    
     public class BorrowingsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -78,6 +78,7 @@ namespace SportUniTrack.Controllers
         }
 
         // GET: Borrowings/Create
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Create()
         {
             return View();
@@ -88,6 +89,7 @@ namespace SportUniTrack.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Create([Bind("Id,UserId,EquipmentId,BorrowedAt,ReturnedAt")] Borrowing borrowing)
         {
             if (ModelState.IsValid)
@@ -100,6 +102,7 @@ namespace SportUniTrack.Controllers
         }
 
         // GET: Borrowings/Edit/5
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -120,6 +123,7 @@ namespace SportUniTrack.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,EquipmentId,BorrowedAt,ReturnedAt")] Borrowing borrowing)
         {
             if (id != borrowing.Id)
@@ -151,6 +155,7 @@ namespace SportUniTrack.Controllers
         }
 
         // GET: Borrowings/Delete/5
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -171,6 +176,7 @@ namespace SportUniTrack.Controllers
         // POST: Borrowings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var borrowing = await _context.Borrowing.FindAsync(id);

@@ -45,6 +45,7 @@ namespace SportUniTrack.Controllers
         }
 
         // GET: Equipments/Create
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Create()
         {
             return View();
@@ -55,6 +56,7 @@ namespace SportUniTrack.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Create([Bind("Id,Name,Description,Quantity")] Equipment equipment)
         {
             if (ModelState.IsValid)
@@ -67,7 +69,7 @@ namespace SportUniTrack.Controllers
         }
 
         // GET: Equipments/Edit/5
-        //[Authorize(Policy = "RequireAdminRole")]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -88,6 +90,7 @@ namespace SportUniTrack.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Quantity")] Equipment equipment)
         {
             if (id != equipment.Id)
@@ -119,6 +122,7 @@ namespace SportUniTrack.Controllers
         }
 
         // GET: Equipments/Delete/5
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -139,6 +143,7 @@ namespace SportUniTrack.Controllers
         // POST: Equipments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var equipment = await _context.Equipment.FindAsync(id);
