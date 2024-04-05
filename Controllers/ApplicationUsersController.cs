@@ -25,13 +25,20 @@ namespace SportUniTrack.Controllers
         // GET: ApplicationUsers
         public async Task<IActionResult> Index(string searchString)
         {
-            
+            // Задаване на стойността на ViewData за полето за търсене
             ViewData["Index"] = searchString;
+
+            // Заявка за извличане на всички потребители
             var usersQuery = from u in _context.ApplicationUser select u;
+
+            // Филтриране на заявката, ако има подаден низ за търсене
             if (!string.IsNullOrEmpty(searchString))
-            { 
+            {
+                // Филтрирайте заявката, за да покажете само потребителите, чиито имена съдържат подадения низ
                 usersQuery = usersQuery.Where(u => u.FirstName.Contains(searchString) || u.LastName.Contains(searchString));
             }
+
+            // Извличане на резултата от заявката и връщане на изгледа
             return View(await usersQuery.AsNoTracking().ToListAsync());
         }
 
@@ -154,6 +161,7 @@ namespace SportUniTrack.Controllers
         // POST: ApplicationUsers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var applicationUser = await _context.ApplicationUser.FindAsync(id);

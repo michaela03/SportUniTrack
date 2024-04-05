@@ -141,6 +141,7 @@ namespace SportUniTrack.Controllers
         }
 
         // POST: Sports/Delete/5
+        [Authorize(Roles = "Admin,User")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
